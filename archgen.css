@@ -1,0 +1,466 @@
+body {
+  margin: 0px;
+  /* font-family: "Lucida Console", Monaco, monospace; */
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}
+
+.display_house {
+  width: 512px;
+  height: 512px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tweak_display {
+  width: 128px;
+  height: 128px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color: white;
+  font-size: 48px;
+}
+h3 {
+  color: white;
+  font-size: 24px;
+}
+
+.heading_container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  background-image: url("splash.jpg");
+  background-color:black;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#story_container {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  background: rgb(238,174,202);
+  background: linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+}
+
+#intro_container {
+  height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  /* background-image: url("splash.jpg"); */
+  /* background-color:black; */
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.selection_container {
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  /* background-image: url("selection.jpg"); */
+  /* opacity: 0.5; */
+  background-color:black;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.output_container {
+  height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  /* background-image: url("splash.jpg"); */
+  background-color:black;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.intermediate_container {
+  height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  /* background-image: url("splash.jpg"); */
+  background-color:black;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.loading_container {
+  height: 100vh;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  background-image: url("loading.jpg");
+  background-color:black;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.modify_container {
+  /* position: absolute; */
+  /* z-index: 1; */
+  height: 100%;
+  width: 100%;
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-image: url("selection.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; 
+}
+/* .black_background {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  background-color:black; 
+  z-index: 0;
+}
+.m_background {
+  top: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("selection.jpg");
+  opacity: 0.5; 
+  z-index: 0;
+} */
+.genericbutton {
+  width: 120px;
+  /* font-family: "Lucida Console", Monaco, monospace; */
+  font-family: 'Roboto', sans-serif;
+  margin: 0 auto;
+  background-color: white
+}
+.slider_wrapper {
+  width: min(70%, 600px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  color: white;
+}
+.left {
+  flex: 0 0 50%;
+}
+.right {
+  flex: 1;
+}
+.thumbnail {
+  width: 100px;
+  height: 100px;
+}
+
+/* @keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+} */
+
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+  height: 100px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+.slidecontainer2 {
+  width: 100%; /* Width of the outside container */
+  /* height: 50px; */
+  /* padding-top: 25px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+
+/* The slider itself */
+.slider {
+  margin-top: 48.5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 80%; /* Full-width */
+  height: 5px; /* Specified height */
+  border-radius: 5px;
+  background: whitesmoke; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+.non_input_slider {
+  margin-top: 48.5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: min(60%, 200px);
+  height: 5px; /* Specified height */
+  border-radius: 5px;
+  background: whitesmoke; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.non_inut_slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+.slider:hover {
+  opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: grey; 
+  border-radius: 50%; 
+  /* background: #4CAF50; */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.non_input_slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: grey; 
+  border-radius: 50%; 
+  /* background: #4CAF50; */
+  cursor: pointer; /* Cursor on hover */
+}
+
+.discreteButton {
+  padding:0.35em 1.2em;
+  border:0.1em solid #FFFFFF;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-size: 20px;
+  font-weight:300;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+  background-color: rgba(0,0,0,0);
+  width: fit-content;
+  margin: 0 auto;
+}
+.discreteButton:hover{
+  color:#000000;
+  background-color:#FFFFFF;
+}
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.disabled:hover {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.gradientButton {
+  background: rgb(131,58,180);
+  background: linear-gradient(29deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);  
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.delayedEntry {
+  animation: 1s fadeIn;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+  visibility: hidden;
+}
+
+/* #truncation_e {
+  display: none;
+}
+
+#truncation_q:hover + #truncation_e {
+  display: block;
+} */
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  border-radius: 6px;
+  top: -5px;
+  left: 105%;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 0 20px; */
+}
+
+/* Create five equal columns that sits next to each other */
+.column {
+  flex: calc(20% - 10px);
+  max-width: calc(20% - 10px);
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+
+#vecari_container {
+  display: none;
+  background-color: black;
+
+  /* height: 100%; */
+  /* width: 100%; */
+  /* min-height: 100vh; */
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+.green_overlay {
+  background: rgba(0,200,0,0.5);
+  position: absolute;
+  height: calc(100% - 8px);
+  width: 100%;
+  top: 8px;
+  left: 0;
+  cursor: pointer;
+}
+.red_overlay {
+  background: rgba(200,0,0,0.5);
+  position: absolute;
+  height: calc(100% - 8px);
+  width: 100%;
+  top: 8px;
+  left: 0;
+  cursor: pointer;
+}
+
+
+/* unused */
+.rainbow {
+  background: rgb(195,34,34);
+  background: linear-gradient(29deg, rgba(195,34,34,1) 0%, rgba(213,255,0,1) 16%, rgba(61,255,0,1) 29%, rgba(0,255,224,1) 41%, rgba(45,65,253,1) 63%, rgba(193,36,247,1) 81%, rgba(255,0,174,1) 100%);
+}
+
+.crazy {
+  background: rgb(195,34,34);
+  background: linear-gradient(29deg, rgba(195,34,34,1) 0%, rgba(45,65,253,1) 8%, rgba(213,255,0,1) 16%, rgba(193,36,247,1) 23%, rgba(61,255,0,1) 29%, rgba(255,0,174,1) 35%, rgba(0,255,224,1) 41%);
+}
+
+.mild {
+  background: rgb(57,145,142);
+  background: linear-gradient(29deg, rgba(57,145,142,1) 0%, rgba(253,180,165,1) 70%, rgba(244,120,130,1) 100%);
+}

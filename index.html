@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
+    <link rel="stylesheet" href="archgen.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <script type="text/javascript" src="index.js"></script>
+    <div class="heading_container cont">
+      <h1>The AI House Project</h1>
+      <button onclick="toIntro()" class="discreteButton" id="startButton">Click me to start</button>
+    </div>
+
+    <div id="intro_container" class="cont mild">
+      <h1>Introduction</h1>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <h3> <bold>This project wants to explore the potential for colaboration between humans and computers in the field of architecture. </bold> <br> <br>
+          The architectural design process is iterative, time consuming and relies on the expertise of the architect to converge on a final design. 
+          While architects do incredible work, it is interesting to see what designs we could create if the end user was given a chance to design their dream home.
+          Of course, they would not be unassisted (it is hard to design from a blank slate) - there is a AI trained in generating images of houses to help! <br> <br>
+          In this experiment, the home design process is explored. While old technologies and methods are characterized by standardizing and mass-producing 
+          identical dwellings, this tool can hopefully show that anyone can have a unique tailored design without having to splurge on an architect. <br> <br>
+          What the AI can produce is a series of "sketches" - conceptual depictions of a house that may at times be crazy, illogical or contain a brilliant design idea!
+        </h3>
+        <div style="display: flex; flex-direction: row; margin-top: 50px;">
+          <button onclick="makeSelection()" class="discreteButton gradientButton" id="startButton" style="margin-left: 0px">Click to start</button>
+          <button onclick="storyTime()" class="discreteButton" id="startButton" style="margin-right: 0px">Intrigued? Click to learn more about the technology</button>
+      </div>
+      </div> 
+    </div>
+
+    <div id="story_container" class="cont">
+      <h1>The Story of the AI House Project</h1>
+      <h2>Motivation</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <h2>Process</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <h2>StyleGAN</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <h2>Latent space</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <h2>PCA</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <h2>Bio</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+      </div>
+      <button onclick="makeSelection()" class="discreteButton gradientButton" id="startButton" style="margin-top: 50px">Enough reading? Click to start</button>
+      <button onclick="window.open('mailto:ekaterina.a.danchenko@gmail.com?subject=AI House Project');" class="discreteButton" id="startButton" style="margin-top: 50px">More questions? Some feedback? Send me an email</button>
+    </div>
+
+    <div class="selection_container cont">
+      <h1>This or that?</h1>
+      <h3>For each slider, select which option you like more.</h3>
+      <!-- <button onclick="genAll()" class="discreteButton gradientButton">Secret button :)</button> -->
+      <button onclick="makeRandom()" class="discreteButton gradientButton">Feeling lucky? Generate random.</button>
+      <p>Know exactly what you want? Input the z and truncation values into the field below and click submit.</p>
+      <input type="text" id="custom_z" style="width: 100px; margin: 0 auto; background-color: gray; color: white;;"> 
+      <!-- <button onclick="submitInputs()" class="discreteButton gradientButton">Submit</button> -->
+      <div id="slidecontainer" class="slider_wrapper"></div>
+      <button onclick="lessOptions()" class="discreteButton lessOptionsButton" style="display: none; margin-top: 50px">Too much? Remove the last 3 options.</button>
+      <p class="lessOptionsButton" style="display: none; color:white">or</p>
+      <button onclick="moreOptions()" class="discreteButton moreOptions" id="moreOptionsButton" style="margin-top: 50px">Need more options?</button>
+      <p class="moreOptions" style="color:white">or</p>
+      <button onclick="generate()" class="discreteButton" style="margin-bottom: 50px">Ready? Click to see what you made...</button>
+    </div>
+
+    <div class="intermediate_container cont">
+      <h1>Ta-Da!</h1>
+      <div class="row" style="justify-content: center; margin-bottom: 50px" id="row1">
+        <img class="4versions" style="margin-right: 25%" onclick="selectStarterImage(0)">
+        <img class="4versions" onclick="selectStarterImage(1)">  
+      </div>
+      <div class="row" style="justify-content: center;" id="row2">
+        <img class="4versions" style="margin-right: 25%" onclick="selectStarterImage(2)">
+        <img class="4versions" onclick="selectStarterImage(3)">  
+      </div>
+      <!-- <button onclick="genAll()" class="discreteButton gradientButton">Secret button :)</button> -->
+      <h3 id="inter_text">Click to select your favorite image!</h3>
+      <button onClick="proceedToOutput()" class="discreteButton gradientButton" id="proceed_button" style="display: none; margin-top: 25px">Great choice! Click to move forward.</button>
+      <h4 style="display: none;" id="inter_text2">Selected the wrong image? Click on a different one to change!</h4>
+    </div>
+
+    <div class="output_container cont">
+      <h1>Your selection:</h1>
+      <img class="display_house image" id="display">
+      <!-- TODO: option to save -->
+      <button onClick="displayModifyMenu()" class="discreteButton delayedEntry" id="modify_button" style="margin-top: 50px">Something feels wrong? Want to tweak the output?</button>
+      <!-- TODO: link to story telling -->
+    </div>
+
+    <div class="loading_container cont">
+      <h1>Your Home is Loading...</h1>
+      <h1 style="display: none;" id="asleep_message">Since the model is just waking up, this might take a moment</h1>
+    </div>
+
+    <div class="modify_container cont">
+      <h1>Everything is Possible!</h1>
+      <div class="delayedEntry" style="animation-delay: 0.5s;">
+        <h3>Here's the image, for reference</h3>
+        <img class="tweak_display image">
+        <p>Try editing truncation:</p>
+        <div class="tooltip"><i>What is truncation? Hover over me!</i>
+          <span class="tooltiptext">Truncation indicates how close the image will be to the average intermediate image. The greater the truncation - the more strange the image is likely to be. Recommended value is 0.7</span>
+        </div>
+        <div class="slidecontainer2">
+          <h3 style="padding-top: 12px">0</h3>
+          <input type="range" min="0" max="1000" value="700" class="non_input_slider" id="truncation_slider" oninput="updateTruncation(this.value)"> 
+          <h3 style="padding-top: 12px">1</h3>
+        </div>
+        <output style="display: block; margin-bottom: 25px;" id="truncation_val">0.7</output> 
+        <div id="modificationButtons">
+          <button onclick="moreModifications()" class="discreteButton">Want more fine-tuning options?</button>
+          <p id="moreModifications" style="color:white">or</p>
+          <button onclick="regenerate()" id="regenerateButton" class="discreteButton gradientButton" style="margin-bottom: 50px">Apply your edits</button>
+        </div>
+        <h3 style="display: none; padding: 20px; background-color: rgba(0,0,0,0.7);" id="scrollText">Scroll down for more options. <br> <br>
+          How to use: <br> <br>
+          Each image encodes a certain set of features. If you want more of one image - click on it once. <br>
+          If you want less of an image - click on it twice. <br>
+          If you are neutral - don't click on an image, or click a total of 3 times to remove a preference. 
+        </h3>
+      </div>
+      <!-- TODO: option to end here and save too -->
+    </div>
+
+    <div id="vecari_container" class="cont">
+      <div class="row">
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+        <div class="column">
+        </div>
+      </div>
+      <div>
+        <button onclick="regenerate2()" class="discreteButton gradientButton" style="margin-bottom: 50px; margin-top: 50px;">Apply your edits</button>
+      </div>
+    </div>
+    <!-- <div class="modify_container black_background"></div>
+    <div class="modify_container m_background"></div> -->
+  </body>
+</html>
