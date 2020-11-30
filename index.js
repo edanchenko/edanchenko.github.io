@@ -1,12 +1,12 @@
-const model = new rw.HostedModel({
-  url: "https://housegenerator.hosted-models.runwayml.cloud/v1/",
-  token: "wWWhTM6RwvpfaxEyvnZCNQ==",
-});
+// const model = new rw.HostedModel({
+//   url: "https://housegenerator.hosted-models.runwayml.cloud/v1/",
+//   token: "",
+// });
 
 // TODO: hardcode the vectors in, maybe
 let VECTORS = [];
 
-// a functio for finding min and max vectorn vals
+// a function for finding min and max vector vals
 function t() {
   let max = -Infinity;
   let min = Infinity;
@@ -138,6 +138,40 @@ function lessOptions() {
   }
 }
 
+let model = null;
+
+function toWall() {
+  clearCont();
+  document.getElementById('entryway').style.display = 'flex';
+}
+
+function enter() {
+  const v = document.getElementById('door').value;
+  // model = new rw.HostedModel(p);
+
+  fetch("https://housegenerator.hosted-models.runwayml.cloud/v1/", {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+      "Authorization": `Bearer ${v}`,
+      "Content-Type": "application/json",
+    }
+  })
+  .then(response => response.json())
+  .then(metadata => {
+    const { status, queryRoute, dataRoute, errorRoute } = metadata;
+    if (metadata.error) {
+      alert('Wrong password: try again');
+    } else {
+      model = new rw.HostedModel({
+        url: "https://housegenerator.hosted-models.runwayml.cloud/v1/",
+        token: v,
+      });
+      makeSelection();
+    }
+  });
+}
+
 let storedInput = [];
 
 function makeSelection() {
@@ -171,7 +205,6 @@ function makeBuilding(input, firstTime) {
   // document.getElementById('vecari_container').style.display = 'none';
   document.getElementById('modificationButtons').style.display = 'block';
   document.getElementById('scrollText').style.display = 'none';
-
 
   if (!model.isAwake()) {
     document.getElementById("asleep_message").style.display = "block";
@@ -432,7 +465,7 @@ function storyTime() {
 // enlarge image
 // no background when theres the house
 // deleting redundant options x icon
-// regenerate the pairs
+// regenerate the pairs option
 
 // back button and/or restart button --> will need to clear a lot of arrays I think
 
@@ -442,8 +475,6 @@ function storyTime() {
 // more guided description of the science behind this --> in a story telling way
   // scrolling, visuals
 
-// hosting
-
 // pre-generated sample collection --> submission option (through email?)
 
 // share to social media button
@@ -452,18 +483,7 @@ function storyTime() {
   // different output UI - browse a 2D plane of images
   // interpolation animation - output a video
 
-// make it more secure - generate API key 
-
 // animations! fades, slides
 // general pretty things
 
 // mobile version or mobile-proofing
-
-
-
-
-// TODO maybe:
-// implement gradation of how much more/less to add/subtract
-// Pix2Pix 
-// collage
-
