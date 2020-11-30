@@ -68,8 +68,9 @@ h3 {
   justify-content: center;
   text-align: center;
 
-  background: rgb(238,174,202);
-  background: linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  /* background: rgb(238,174,202); */
+  /* background: linear-gradient(180deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%); */
+  background-color: #222222;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -85,7 +86,7 @@ h3 {
   text-align: center;
 
   /* background-image: url("splash.jpg"); */
-  /* background-color:black; */
+  background-color: #222222;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -161,9 +162,10 @@ h3 {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  background-image: url("selection.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; 
+  background-color: #222222;
+  /* background-image: url("selection.jpg"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover;  */
 }
 /* .black_background {
   top: 0;
@@ -186,6 +188,21 @@ h3 {
   opacity: 0.5; 
   z-index: 0;
 } */
+.x_icon {
+  border-radius: 50%;
+  width: 36px;
+  height: 32px;
+  background: rgba(0,0,0,0);
+  border: 2px solid #666;
+  color: #666;
+  text-align: center;
+  font-size: 32px;
+  padding: 3px 8px 8px 8px;
+  margin-left: 40px;
+  pointer-events: all;
+  cursor: pointer;
+}
+
 .genericbutton {
   width: 120px;
   /* font-family: "Lucida Console", Monaco, monospace; */
@@ -194,12 +211,13 @@ h3 {
   background-color: white
 }
 .slider_wrapper {
-  width: min(70%, 600px);
+  width: 687px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   margin: 0 auto;
+  transform: translate(44.39px, 0px);
 }
 .wrapper {
   display: flex;
@@ -432,7 +450,7 @@ h3 {
 
 #vecari_container {
   display: none;
-  background-color: black;
+  background-color: #222222;
 
   /* height: 100%; */
   /* width: 100%; */

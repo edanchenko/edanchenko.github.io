@@ -3,7 +3,6 @@
 //   token: "",
 // });
 
-// TODO: hardcode the vectors in, maybe
 let VECTORS = [];
 
 // a function for finding min and max vector vals
@@ -69,7 +68,6 @@ function populateSliders() {
     let wrapper = document.createElement('div');
     wrapper.classList.add('slidecontainer');
 
-    // TODO: add corresponding images
     let im1 = document.createElement('img');
     im1.src = `./samples/download${pairArr[2 * i]}.jpg`;
     im1.classList.add('thumbnail');
@@ -80,14 +78,32 @@ function populateSliders() {
     slider.max = 1000;
     slider.value = 500;
     slider.classList.add('slider');
+    slider.dataset.include = 1;
 
     let im2 = document.createElement('img');
     im2.src = `./samples/download${pairArr[2 * i + 1]}.jpg`;
     im2.classList.add('thumbnail');
-      
+
+    let x = document.createElement('p');
+    x.innerText = '\u2715';
+    x.classList.add('x_icon');
+    x.onclick = () => {
+      if (slider.dataset.include == 1) {
+        wrapper.style.opacity = 0.3;
+        slider.disabled = true;
+        slider.dataset.include = 0;
+      } else {
+        wrapper.style.opacity = 1;
+        slider.disabled = false;
+        slider.dataset.include = 1;
+      }
+    }
+    
+
     wrapper.appendChild(im1);
     wrapper.appendChild(slider);
     wrapper.appendChild(im2);
+    wrapper.appendChild(x);
     c.appendChild(wrapper);
   }
   lastIndex += 3;
@@ -138,6 +154,20 @@ function lessOptions() {
   }
 }
 
+function clearSliders() {
+  lastIndex = 3;
+  const els = document.getElementsByClassName('slidecontainer');
+  const l = els.length;
+  for (let i = l - 1; i >= 0; i--) {
+    els[i].remove();
+  }
+  const es = document.getElementsByClassName('lessOptionsButton');
+    for (let i = 0; i < es.length; i++) {
+      es[i].style.display = 'none';
+    }
+    document.getElementById('moreOptionsButton').style.marginTop = "50px";
+}
+
 let model = null;
 
 function toWall() {
@@ -167,22 +197,33 @@ function enter() {
         url: "https://housegenerator.hosted-models.runwayml.cloud/v1/",
         token: v,
       });
-      makeSelection();
+      makeSelection(true);
     }
   });
 }
 
 let storedInput = [];
 
-function makeSelection() {
-  // let el = document.getElementsByClassName('heading_container')[0];
-    // el.style.display = 'none';
-  clearCont();
-  // el.classList.add("fadeOut");
+function reshuffle() {
   // initialize the random pairs
-  init_pairs();
+  if (!pairArr.length) {
+    init_pairs();
+  } else {
+    shuffleArray(pairArr);
+  }
+  // clear existing sliders
+  clearSliders();
   // create the initial sliders
   populateSliders();
+}
+
+
+function makeSelection(startOver) { 
+  if (startOver) {
+    reshuffle();
+  }
+  clearCont();
+  
   // when ready, display container
   document.getElementsByClassName('selection_container')[0].style.display = 'flex';
 }
@@ -198,6 +239,7 @@ let global4Versions = [];
 
 function makeBuilding(input, firstTime) {
   storedInput = input;
+  // console.log(input);
   clearCont();
   // document.getElementsByClassName('selection_container')[0].style.display = 'none';
   // document.getElementsByClassName('modify_container')[0].style.display = 'none';
@@ -209,8 +251,10 @@ function makeBuilding(input, firstTime) {
   if (!model.isAwake()) {
     document.getElementById("asleep_message").style.display = "block";
     console.log("shhh I'm sleeping");
+  } else {
+    document.getElementById("asleep_message").style.display = "none";
+    console.log("I'm awake and ready to go!");
   }
-  // TODO: error status check!!!!!!
 
   if (!firstTime) {
     // document.getElementById('row1').style.display = 'none';
@@ -339,7 +383,9 @@ function generate() {
     // max 15 sliders, maybe less
     // there are max 30 vectors, maybe less
     const val = sliders[i].value;
-    temp.push(interpolate(val / 1000, pairArr[i * 2], pairArr[i * 2 + 1]));
+    if (sliders[i].dataset.include == 1) {
+      temp.push(interpolate(val / 1000, pairArr[i * 2], pairArr[i * 2 + 1]));
+    }
   }
 
   let outVec = [];
@@ -348,8 +394,6 @@ function generate() {
     for (let j = 0; j < temp.length; j++) {
       val += temp[j][i];
     }
-    // TODO: should I be dividing by the total? test!
-    // outVec.push(val / temp.length);
     outVec.push(val);
   }
 
@@ -461,29 +505,37 @@ function storyTime() {
   document.getElementById('story_container').style.display = 'flex';
 }
 
+function generateExact() {
+  try {
+    const input = JSON.parse(document.getElementById('custom_z').value);  
+    if (input && (input.z != undefined) && (input.truncation != undefined) && input.z.length == 512 && input.truncation.length === 1) {
+      makeBuilding(input, true);
+    } else {
+      alert('input is incorrectly formatted');
+    }
+  } catch(e) {
+    alert(e);
+  } 
+}
+
+
 // TODO:
-// enlarge image
-// no background when theres the house
-// deleting redundant options x icon
-// regenerate the pairs option
 
-// back button and/or restart button --> will need to clear a lot of arrays I think
-
-// save button, save the parameters --> menu to input exact parameters
+// -- Output screen
+// restart button --> will need to clear a lot of arrays I think --> wrote makeSelection(true)
+// save button, save the parameters
 // enlarge image on click & on hover in modification & inital selection modes
-
-// more guided description of the science behind this --> in a story telling way
-  // scrolling, visuals
-
-// pre-generated sample collection --> submission option (through email?)
-
 // share to social media button
-
 // interact with the latent space:
   // different output UI - browse a 2D plane of images
   // interpolation animation - output a video
 
+// -- Story screen
+// more guided description of the science behind this --> in a story telling way
+  // scrolling, visuals
+// pre-generated sample collection --> submission option (through email?)
+
+// -- Final touches
 // animations! fades, slides
 // general pretty things
-
 // mobile version or mobile-proofing

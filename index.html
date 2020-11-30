@@ -12,7 +12,7 @@
       <button onclick="toIntro()" class="discreteButton" id="startButton">Click me to start</button>
     </div>
 
-    <div id="intro_container" class="cont mild">
+    <div id="intro_container" class="cont">
       <h1>Introduction</h1>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
         <h3> <bold>This project wants to explore the potential for colaboration between humans and computers in the field of architecture. </bold> <br> <br>
@@ -71,19 +71,34 @@
     </div>
 
     <div class="selection_container cont">
-      <h1>This or that?</h1>
+      <h1 style="margin-bottom: 0px;">This or that?</h1>
       <h3>For each slider, select which option you like more.</h3>
       <!-- <button onclick="genAll()" class="discreteButton gradientButton">Secret button :)</button> -->
-      <button onclick="makeRandom()" class="discreteButton gradientButton">Feeling lucky? Generate random.</button>
-      <p>Know exactly what you want? Input the z and truncation values into the field below and click submit.</p>
-      <input type="text" id="custom_z" style="width: 100px; margin: 0 auto; background-color: gray; color: white;;"> 
-      <!-- <button onclick="submitInputs()" class="discreteButton gradientButton">Submit</button> -->
+      <div style="flex-direction: row; display: flex; width: 600px; margin: 0 auto;">
+        <button onclick="makeRandom()" class="discreteButton" style="font-size: 15px">Feeling lucky? Generate random.</button>
+        <p style="margin: 20px 50px 20px 50px;"> </p>
+        <button onclick="reshuffle()" class="discreteButton" style="font-size: 15px">Don't like your options? Reshuffle the sliders.</button>
+      </div>
+
       <div id="slidecontainer" class="slider_wrapper"></div>
+
       <button onclick="lessOptions()" class="discreteButton lessOptionsButton" style="display: none; margin-top: 50px">Too much? Remove the last 3 options.</button>
       <p class="lessOptionsButton" style="display: none; color:white">or</p>
+
       <button onclick="moreOptions()" class="discreteButton moreOptions" id="moreOptionsButton" style="margin-top: 50px">Need more options?</button>
       <p class="moreOptions" style="color:white">or</p>
-      <button onclick="generate()" class="discreteButton" style="margin-bottom: 50px">Ready? Click to see what you made...</button>
+      <button onclick="generate()" class="discreteButton gradientButton" style="margin-bottom: 50px">Ready? Click to see what you made...</button>
+
+      <h3 style="width: 700px; margin: 0 auto;">Know exactly what you want? Input the z and truncation values into the field below in the format described and click submit.</h3>
+
+      <div class="form__group field" style="margin: 0 auto; margin-top: 25px; margin-bottom: 25px;">
+        <input type="text" class="form__field" placeholder="{'z': array of 512 floats,'truncation': number}" id="custom_z"/>
+        <label for="name" class="form__label"> {'z': array of 512 floats,'truncation': number}</label>
+      </div>
+      <button onclick="generateExact()" class="discreteButton gradientButton" style="margin: 0 auto; margin-bottom: 50px;">Submit</button>
+
+      <!-- <input type="text" id="custom_z" style="width: 100px; margin: 0 auto; background-color: gray; color: white;;">  -->
+      <!-- <button onclick="submitInputs()" class="discreteButton gradientButton">Submit</button> -->
     </div>
 
     <div class="intermediate_container cont">
@@ -106,8 +121,9 @@
       <h1>Your selection:</h1>
       <img class="display_house image" id="display">
       <!-- TODO: option to save -->
-      <button onClick="displayModifyMenu()" class="discreteButton delayedEntry" id="modify_button" style="margin-top: 50px">Something feels wrong? Want to tweak the output?</button>
+      <!-- TODO: option to start over -->
       <!-- TODO: link to story telling -->
+      <button onClick="displayModifyMenu()" class="discreteButton delayedEntry" id="modify_button" style="margin-top: 50px">Something feels wrong? Want to tweak the output?</button>
     </div>
 
     <div class="loading_container cont">
@@ -134,10 +150,13 @@
           <button onclick="moreModifications()" class="discreteButton">Want more fine-tuning options?</button>
           <p id="moreModifications" style="color:white">or</p>
           <button onclick="regenerate()" id="regenerateButton" class="discreteButton gradientButton" style="margin-bottom: 50px">Apply your edits</button>
+          <!-- TODO: option to start over -->
         </div>
         <h3 style="display: none; padding: 20px; background-color: rgba(0,0,0,0.7);" id="scrollText">Scroll down for more options. <br> <br>
           How to use: <br> <br>
-          Each image encodes a certain set of features. If you want more of one image - click on it once. <br>
+          Each image represents a type of building and has an associated <i>feature vector</i> that encodes that building. <br>
+          Like in math, we could <i>add</i> and <i>subtract</i> features from our image to modify it.<br> 
+          If you want more of one image - click on it once. <br>
           If you want less of an image - click on it twice. <br>
           If you are neutral - don't click on an image, or click a total of 3 times to remove a preference. 
         </h3>
