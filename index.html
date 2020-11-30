@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
+    <script src="http://cdn.staticfile.org/FileSaver.js/1.3.8/FileSaver.min.js"></script> 
     <link rel="stylesheet" href="archgen.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
   </head>
@@ -113,17 +114,20 @@
       </div>
       <!-- <button onclick="genAll()" class="discreteButton gradientButton">Secret button :)</button> -->
       <h3 id="inter_text">Click to select your favorite image!</h3>
-      <button onClick="proceedToOutput()" class="discreteButton gradientButton" id="proceed_button" style="display: none; margin-top: 25px">Great choice! Click to move forward.</button>
+      <button onclick="proceedToOutput()" class="discreteButton gradientButton" id="proceed_button" style="display: none; margin-top: 25px">Great choice! Click to move forward.</button>
       <h4 style="display: none;" id="inter_text2">Selected the wrong image? Click on a different one to change!</h4>
     </div>
 
     <div class="output_container cont">
       <h1>Your selection:</h1>
       <img class="display_house image" id="display">
-      <!-- TODO: option to save -->
-      <!-- TODO: option to start over -->
-      <!-- TODO: link to story telling -->
-      <button onClick="displayModifyMenu()" class="discreteButton delayedEntry" id="modify_button" style="margin-top: 50px">Something feels wrong? Want to tweak the output?</button>
+      <div style="flex-direction: row; display: flex; width: 512px; margin: 0 auto; margin-top: 25px;">
+        <button onclick="save()" class="discreteButton" style="font-size: 15px; margin-left: 0px;">Save your image</button>
+        <button onclick="makeSelection(true)" class="discreteButton" style="font-size: 15px">Start over</button>
+        <button onclick="storyTime()" class="discreteButton" style="font-size: 15px; margin-right: 0px;">Learn more</button>
+      </div>
+      <p>or</p>
+      <button onClick="displayModifyMenu()" class="discreteButton" id="modify_button" style="margin-bottom: 50px">Want to tweak the output?</button>
     </div>
 
     <div class="loading_container cont">
@@ -136,6 +140,7 @@
       <div class="delayedEntry" style="animation-delay: 0.5s;">
         <h3>Here's the image, for reference</h3>
         <img class="tweak_display image">
+        <button onclick="proceedToOutput()" class="discreteButton" style="margin-top: 25px;">Changed your mind? Go back.</button>
         <p>Try editing truncation:</p>
         <div class="tooltip"><i>What is truncation? Hover over me!</i>
           <span class="tooltiptext">Truncation indicates how close the image will be to the average intermediate image. The greater the truncation - the more strange the image is likely to be. Recommended value is 0.7</span>

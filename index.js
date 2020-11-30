@@ -187,19 +187,36 @@ function enter() {
       "Content-Type": "application/json",
     }
   })
-  .then(response => response.json())
+  .then(response => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Something went wrong');
+    }
+  })
   .then(metadata => {
     const { status, queryRoute, dataRoute, errorRoute } = metadata;
+    console.log('metadata ', metadata);
     if (metadata.error) {
       alert('Wrong password: try again');
     } else {
+      if (metadata.errorRoute) {
+        alert('Something is wrong with the model: try again later');
+      }
+      console.log('status :', status);
       model = new rw.HostedModel({
         url: "https://housegenerator.hosted-models.runwayml.cloud/v1/",
         token: v,
       });
+      if (status == 'starting') {
+        console.log('model is starting');
+      } else if (status == 'running') {
+        console.log('model is running');
+      }
       makeSelection(true);
     }
-  });
+  })
+  .catch((error) => console.log('error'));
 }
 
 let storedInput = [];
@@ -210,6 +227,11 @@ function reshuffle() {
     init_pairs();
   } else {
     shuffleArray(pairArr);
+    const all = document.getElementsByClassName('4versions');
+    // indicate that the selection has been made
+    for (let i = 0; i < 4; i++) {
+      all[i].style.opacity = 1;
+    }
   }
   // clear existing sliders
   clearSliders();
@@ -518,11 +540,67 @@ function generateExact() {
   } 
 }
 
+function b64toFile(b64Data, filename, contentType) {
+  let sliceSize = 512;
+  let byteCharacters = atob(b64Data);
+  let byteArrays = [];
+
+  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      let slice = byteCharacters.slice(offset, offset + sliceSize);
+      let byteNumbers = new Array(slice.length);
+
+      for (let i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+      }
+      let byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+  }
+
+  let file = new File(byteArrays, filename, {type: contentType});
+  return file;
+}
+
+function downloadBlob() {
+  const blob = new Blob([new Buffer(document.getElementsByClassName('image')[0].src, 'base64')], {type: 'image/png'});
+  const filename = 'ai_house.png'
+  if (window.navigator.msSaveOrOpenBlob) {
+      window.navigator.msSaveBlob(blob, filename);
+  } else {
+      const elem = window.document.createElement('a');
+      elem.href = window.URL.createObjectURL(blob);
+      elem.download = filename;
+      document.body.appendChild(elem);
+      elem.click();
+      window.URL.revokeObjectURL(elem.href);
+      document.body.removeChild(elem);
+  }        
+}
+
+function save() {
+  // const base64Data = document.getElementsByClassName('image')[0].src;
+  // const blob = new Blob([base64Data], {type: "data:image/png;base64"});
+  // FileSaver.saveAs(blob, "hello.png");
+
+  // base64Data is the data obtained by the server
+  // let file = b64toFile(base64Data, 'test', 'data:image/png;base64');
+  
+  // // Use FileSaver.js to download the file as an Excel file
+  // saveAs(file, 'ai_house.png');
+
+
+  // downloadBlob();
+
+  const a = document.createElement("a");
+  a.href = "data:image/jpg;base64," + document.getElementsByClassName('image')[0].src;
+  a.download = "ai_house.jpg";
+  a.click();
+}
+
+
 
 // TODO:
 
 // -- Output screen
-// restart button --> will need to clear a lot of arrays I think --> wrote makeSelection(true)
 // save button, save the parameters
 // share to social media button
 
@@ -540,4 +618,7 @@ function generateExact() {
 // custom input
 // mobile
 // different desktop sizes
-// 
+
+// done
+// restart button --> will need to clear a lot of arrays I think --> wrote makeSelection(true)
+
