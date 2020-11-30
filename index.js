@@ -524,11 +524,7 @@ function generateExact() {
 // -- Output screen
 // restart button --> will need to clear a lot of arrays I think --> wrote makeSelection(true)
 // save button, save the parameters
-// enlarge image on click & on hover in modification & inital selection modes
 // share to social media button
-// interact with the latent space:
-  // different output UI - browse a 2D plane of images
-  // interpolation animation - output a video
 
 // -- Story screen
 // more guided description of the science behind this --> in a story telling way
@@ -539,3 +535,9 @@ function generateExact() {
 // animations! fades, slides
 // general pretty things
 // mobile version or mobile-proofing
+
+// -- Testing
+// custom input
+// mobile
+// different desktop sizes
+// 

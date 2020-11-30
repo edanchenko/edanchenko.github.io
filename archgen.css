@@ -5,6 +5,32 @@ body {
   color: white;
 }
 
+.vec_ari_img {
+  transition: transform .2s;
+}
+
+/* .vec_ari_img:hover {
+  transition-delay:1s;
+  transform: scale(1.5);
+  position: relative;
+  z-index: 1;
+} */
+
+.vec_ari_zoom:hover {
+  transition-delay:1s;
+  transform: scale(1.5);
+  position: relative;
+  z-index: 1;
+}
+.zoomish {
+  transition: transform .2s;
+}
+
+.zoomish:hover {
+  transform: scale(1.5);
+  z-index: 1;
+}
+
 .display_house {
   width: 512px;
   height: 512px;
@@ -19,6 +45,13 @@ body {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  transition: transform .2s;
+}
+
+.tweak_display:hover {
+  position: relative;
+  transform: scale(4);
+  z-index: 1;
 }
 
 h1 {
@@ -233,6 +266,12 @@ h3 {
 .thumbnail {
   width: 100px;
   height: 100px;
+  transition: transform .2s;
+}
+
+.thumbnail:hover {
+  transform: scale(4);
+  z-index: 1;
 }
 
 /* @keyframes fadeOut {
