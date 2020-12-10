@@ -45,27 +45,100 @@
       <h1>The Story of the AI House Project</h1>
       <h2>Motivation</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">
+          With the advent of artificial intelligence (AI) machines have become able to challenge our notion that human intelligence can be the sole source of creativity. I am exploring to what extent the machine can be a companion, rather just a tool in creative work. I was also motivated to make this companion/tool as easy to collaborate with as possible, placing the task of design into the hands of all users, rather than highly-trained and expensive architects. How much more creative work can we generate if users and machines combine forces in designing their own dwelling? <br><br>
+          The house, as the architectural unit to generate, was not chosen arbitrarily. The home is such an intimate and personal entity that many of us are not comfortable surrendering to the whims of machine's creativity. However, the bigger picture is that of growing housing needs, especially for homes that will house as well. More, rapid production has almost always equaled to more standardization and implied the death of uniqueness. I was hoping to explore an opportunity for quick, personalized design through the help of a machine. As a side effect, perhaps that would also break the emotional barrier we have towards using new, foreign technology and collaborating with an AI. <br><br>
+          While the further aims of this project may be serious, the process was built around fun. It is structured like a game and guides you from one decision to the next. The aim of that was to improve the accessibility of high-tech tools. Not only is this a low-cost solution, it is also easy to use for people to feel comfortable and excited about this collaboration.<br><br>
+        </p>
+      </div>
+      <h2>Impact</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p class="story_text">
+          This fits into my broader study of the impact of latest technology on shaping future housing. This investigation is being conducted along four fronts, one of which is the increased democratization of the design process and its placement into the hands of the end user, as opposed to the architect. The architect still holds an important role, but one that may become more managerial rather than design-focused. If the AI becomes really good, maybe people won't need to design in the same wat but will focus more on bringing the computer made designs into (real) life. With tools like this, we could bring great designs at low cost to many people. On a more philosophical note, this may provide another possibility for a computer demonstrate human like creativity. <br><br>
+        </p>
       </div>
       <h2>Process</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">Different avenues to creation were proposed: random, based on selection between pairs of images, and exact input. <br><br>
+          Random generates a random vector in the latent space of the StyleGAN and shows it. <br><br>
+          30 principal component vectors derived after performing PCA were converted into their corresponding images. Random pair combinations of these 30 houses are generated each time and the user is allowed to make selections between them, based on how much they prefer one to the other. They can also 'delete' a pair if they do not wish to make a choice and it won't be counted. The user is first asked to make selections on 3 pairs, but up to 15 could be added (once added, you can subtract too). Once finished, I interpolate a vector between the 2 image vectors based on user input and add the total number of generated vectors to make the input. <br><br>
+          Exact input is only really useful for those users who have already used the tool and chose to download the parameters for an image that they like. These parameters could be pasted in. <br><br>
+          The initial output stage for random and slider inputs shows the user four options - one is the exactly generated image; the three other ones are similar-looking yet different images created by slightly modifying the original. The user is asked to pick their favorite to move forward with.<br><br>
+          The chosen outputted image is shown, with the option to tweak the output further.<br><br>
+          Further tweaks involve modifying the truncation (easy), which affects how average or how crazy the image is going to look. If one would like to customize the output further, a vector arithmetic interface was created. There, images are shown in a randomly generated order. If a user wants to "add" more of an image to their image, they can click on it once. Similarly, to "subtract" they click twice. Three clicks and the preference is removed. <br><br>
+          There are options to restart, go back, save image, save parameters and to learn more at multiple stages of the process.<br><br>
+        </p>
+      </div>
+      <h2>Technology used</h2>
+      <h2>GAN</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p class="story_text">
+          Generative Adversarial Networks are machine learning frameworks invented by Ian Goodfellow and his colleagues in 2014. It involves a "generator" and a "discriminator": the generator creates new instances based on the inputted data while the discriminator decides whether this instance belongs to the training data set or not. Through this feedback loop the machine is able to create "fake" data that is convincing. 
+        </p>
       </div>
       <h2>StyleGAN</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">
+          The StyleGAN2 is a very new GAN model, that is capable of generative very realistic images based on training image data. I trained the StyleGAN2 model on over 5000 images of houses coming from multiple datasets (sources included below). The datasets were modified and filtered to include pictures of only houses of decent quality and not obstructed too much by trees, cars or other objects. I also tried to find images from a variety of architectural styles, however, the results do show a preference for a particular type of house. <br><br>
+          The original authors of this model worked mostly with images of faces, and that's where the model showed the most success. Some of the faces it can create are incredible!
+        </p>
       </div>
       <h2>Latent space</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">
+          Latent space of a GAN is a representation of the data that it generates. In the case of the StyleGAN2, every image it can create is encoded by a 512-dimensional z-vector. The best way to interact with the space is through using these vectors. Each model has its own understanding of what a vector will mean. Work had to be done to "pick" the key vectors to use (through techniques like PCA). Obviously, the vector itself does not mean much to us, humans, but the image that it represents does, so all the latent space exploration through vectors had to be done in terms of images displayed to the user. <br><br>
+          A key process in latent space exploration is vector arithmetic. Yes, it is possible to add and subtract images from each other by manipulating their vectors. Each image encodes a set of features, so adding and subtracting images can yield very reasonable results. To use faces as a simple example, smiling woman - neutral woman + neutral man = smiling man. Houses behave similarly, yet the features a house represents are harder to put into this concise form. <br><br>
+          Truncation is an important number, as it represents how far away from the average image the new generated image is going to be. Every latent space has some average image, found at truncation=0. At truncation=1, we get the edge of the latent space. The edge represents the limits of what the GAN has seen, so there are fewer training images that trained these areas. Hence, the closer to the edge we go, the less logical and crazier the images get. The recommended value to use is 0.7. <br><br>
+          The latent space is very abstract and large, so it was my goal to make accessing it understandable, to tap into its potential.
+        </p>
       </div>
       <h2>PCA</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">
+          Principal component analysis allows us to reduce the dimensionality of a space by finding the key vectors in that space. The first vector you would find contributes to encoding the most images in that space, with the subsequent vectors declining in importance. In the example of encoding 2D images, the idea is that instead of having to know each pixel value at each location, one would be able to compose almost every image out of some combination of some of the principal component vectors of that space. Navigating the latent space of the GAN benefitted greatly from PCA-derived vectors.
+        </p>
       </div>
-      <h2>Bio</h2>
+      <h2>Runway ML</h2>
       <div style="width: 800px; margin: 0 auto; text-align: left;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna sed libero elementum vulputate. Nulla facilisi. In ipsum ipsum, gravida fermentum iaculis in, condimentum dapibus ex. Fusce ac elit scelerisque, faucibus eros eget, consectetur nibh. Phasellus placerat eros purus, blandit varius nisi fermentum ut. Nulla accumsan aliquet quam, id mattis libero ornare quis. Etiam sed tortor et nisl mattis viverra. Vivamus accumsan elit vel mattis varius.</p>
+        <p class="story_text">
+          Runway ML is a software that allows one to train resource-consuming machine learning models on remote machines. This allowed me to train the StyleGAN2 on my dataset without owning the required hardware. Runway also offers to host your models for you with the ability to access and run them from your website via their API, which is what I used to interface with my model, once it was trained.
+        </p>
+      </div>
+      <h2>Sources</h2>
+      <div style="width: 800px; margin: 0 auto; text-align: left;">
+        <p class="story_text">
+          GAN <br><br>
+          Goodfellow,I.,Pouget-AbadieJ.,MirzaM.,XuB.,Warde-FarleyD.,OzairS.,Courville 
+A., and Bengia. Y.: Generative Adversarial Nets. In: Advances in Neural Information 
+Processing Systems 27, pp. 2672-2680. Curran Associates, Inc., Red Hook NY (2014). <br><br>
+          StyleGAN2 <br><br>
+          @inproceedings{Karras2019stylegan2,<br>
+            title     = {Analyzing and Improving the Image Quality of {StyleGAN}},<br>
+            author    = {Tero Karras and Samuli Laine and Miika Aittala and Janne Hellsten and Jaakko Lehtinen and Timo Aila},<br>
+            booktitle = {Proc. CVPR},<br>
+            year      = {2020}<br>
+          }<br><br>
+          Original datasets, modified and filtered for training <br><br>
+          @article{ahmed2016house, title={House price estimation from visual and textual features}, author={Ahmed, Eman and Moustafa, Mohamed}, journal={arXiv preprint arXiv:1609.08399}, year={2016} } <br>
+          SoCal houses: https://www.kaggle.com/ted8080/house-prices-and-images-socal <br>
+          Xu,Z.,TaoD.,ZhangY.,WuJ.,TsoiA.:ArchitecturalStyleClassificationUsing 
+          Multinomial Latent Logistic Regression. In: European Conference on Computer Vision. 
+          pp. 600-615. Springer, Cham (2014). <br><br>
+
+          Latent space & PCA<br><br>
+          GANSpace: Discovering Interpretable GAN Controls
+          Erik Härkönen1,2, Aaron Hertzmann2, Jaakko Lehtinen1,3, Sylvain Paris2
+          1Aalto University, 2Adobe Research, 3NVIDIA
+          https://arxiv.org/abs/2004.02546 <br>
+
+          I modified this notebook to find 30 principal image vectors: https://colab.research.google.com/drive/1g-ShMzkRWDMHPyjom_p-5kqkn2f-GwBi <br><br>
+
+          Runway ML<br><br> https://runwayml.com/ <br><br>
+
+          Image credits <br><br>
+          Blue and gold marble texture by Zamurovic Brothers from Noun Project<br>
+          Floppy disks over light blue background by Bogdan Dreava from Noun Project<br>      
+        </p>
       </div>
       <button onclick="toWall()" class="discreteButton gradientButton" id="startButton" style="margin-top: 50px">Enough reading? Click to start</button>
       <button onclick="toGallery()" class="discreteButton" style="margin-top: 50px">Browse the AI gallery</button>
