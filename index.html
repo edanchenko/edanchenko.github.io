@@ -122,7 +122,8 @@
       <h1>Your selection:</h1>
       <img class="display_house image" id="display">
       <div style="flex-direction: row; display: flex; width: 512px; margin: 0 auto; margin-top: 25px;">
-        <button onclick="save()" class="discreteButton" style="font-size: 15px; margin-left: 0px;">Save your image</button>
+        <button onclick="save()" class="discreteButton" style="font-size: 15px; margin-left: 0px;">Save image</button>
+        <button onclick="saveParams()" class="discreteButton" style="font-size: 15px;;">Save params</button>
         <button onclick="makeSelection(true)" class="discreteButton" style="font-size: 15px">Start over</button>
         <button onclick="storyTime()" class="discreteButton" style="font-size: 15px; margin-right: 0px;">Learn more</button>
       </div>
@@ -132,6 +133,7 @@
 
     <div class="loading_container cont">
       <h1>Your Home is Loading...</h1>
+      <h2>(sometimes, this may take a while)</h2>
       <h1 style="display: none;" id="asleep_message">Since the model is just waking up, this might take a moment</h1>
     </div>
 

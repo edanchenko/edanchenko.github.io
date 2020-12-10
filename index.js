@@ -172,7 +172,11 @@ let model = null;
 
 function toWall() {
   clearCont();
-  document.getElementById('entryway').style.display = 'flex';
+  if (model != null) {
+    makeSelection(true);
+  } else {
+    document.getElementById('entryway').style.display = 'flex';
+  } 
 }
 
 function enter() {
@@ -348,8 +352,9 @@ function selectStarterImage(index) {
 }
 
 function proceedToOutput() {
+  clearCont();
   document.getElementsByClassName('output_container')[0].style.display = 'flex';
-  document.getElementsByClassName('intermediate_container')[0].style.display = 'none';
+  // document.getElementsByClassName('intermediate_container')[0].style.display = 'none';
 }
 
 let iter_index = 0;
@@ -530,9 +535,14 @@ function storyTime() {
 function generateExact() {
   try {
     const input = JSON.parse(document.getElementById('custom_z').value);  
-    if (input && (input.z != undefined) && (input.truncation != undefined) && input.z.length == 512 && input.truncation.length === 1) {
-      makeBuilding(input, true);
+    if (input && (input.z != undefined) && (input.truncation != undefined) && input.z.length == 512 && input.truncation != isNaN) {
+      makeBuilding(input, false);
     } else {
+      console.log(input && true);
+      console.log(input.z != undefined);
+      console.log(input.truncation != undefined);
+      console.log(input.z.length);
+      console.log(input.truncation != isNaN);
       alert('input is incorrectly formatted');
     }
   } catch(e) {
@@ -540,78 +550,59 @@ function generateExact() {
   } 
 }
 
-function b64toFile(b64Data, filename, contentType) {
-  let sliceSize = 512;
-  let byteCharacters = atob(b64Data);
-  let byteArrays = [];
+function saveScreenshot(canvas) {
+  let fileName = "AI_house"
+  const link = document.createElement('a');
+  link.download = fileName + '.jpeg';
+  // console.log(canvas)
+  canvas.toBlob(function(blob) {
+      // console.log(blob)
+      link.href = URL.createObjectURL(blob);
+      link.click();
+  });
+};
 
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      let slice = byteCharacters.slice(offset, offset + sliceSize);
-      let byteNumbers = new Array(slice.length);
-
-      for (let i = 0; i < slice.length; i++) {
-          byteNumbers[i] = slice.charCodeAt(i);
-      }
-      let byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-  }
-
-  let file = new File(byteArrays, filename, {type: contentType});
-  return file;
-}
-
-function downloadBlob() {
-  const blob = new Blob([new Buffer(document.getElementsByClassName('image')[0].src, 'base64')], {type: 'image/png'});
-  const filename = 'ai_house.png'
-  if (window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveBlob(blob, filename);
-  } else {
-      const elem = window.document.createElement('a');
-      elem.href = window.URL.createObjectURL(blob);
-      elem.download = filename;
-      document.body.appendChild(elem);
-      elem.click();
-      window.URL.revokeObjectURL(elem.href);
-      document.body.removeChild(elem);
-  }        
-}
 
 function save() {
-  // const base64Data = document.getElementsByClassName('image')[0].src;
-  // const blob = new Blob([base64Data], {type: "data:image/png;base64"});
-  // FileSaver.saveAs(blob, "hello.png");
+  const base64string = document.getElementsByClassName('image')[0].src;
+  const pageImage = new Image();
+  // pageImage.src = 'data:image/jpg;base64,' + base64string;
+  pageImage.src = base64string;
+  pageImage.onload = function() {
+    const canvas = document.createElement('canvas');
+    canvas.width = pageImage.naturalWidth;
+    canvas.height= pageImage.naturalHeight;
 
-  // base64Data is the data obtained by the server
-  // let file = b64toFile(base64Data, 'test', 'data:image/png;base64');
-  
-  // // Use FileSaver.js to download the file as an Excel file
-  // saveAs(file, 'ai_house.png');
-
-
-  // downloadBlob();
-
-  const a = document.createElement("a");
-  a.href = "data:image/jpg;base64," + document.getElementsByClassName('image')[0].src;
-  a.download = "ai_house.jpg";
-  a.click();
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(pageImage, 0, 0);
+    // console.log(canvas, pageImage)
+    saveScreenshot(canvas);
+  }
 }
 
+function saveParams() {
+  const exportObj = storedInput;
+  const exportName = 'AI_house_parameters';
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href",     dataStr);
+  downloadAnchorNode.setAttribute("download", exportName + ".json");
+  document.body.appendChild(downloadAnchorNode); // required for firefox
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
 
 
 // TODO:
-
-// -- Output screen
-// save button, save the parameters
-// share to social media button
 
 // -- Story screen
 // more guided description of the science behind this --> in a story telling way
   // scrolling, visuals
 // pre-generated sample collection --> submission option (through email?)
+// sources
 
 // -- Final touches
-// animations! fades, slides
-// general pretty things
 // mobile version or mobile-proofing
 
 // -- Testing
@@ -620,5 +611,6 @@ function save() {
 // different desktop sizes
 
 // done
-// restart button --> will need to clear a lot of arrays I think --> wrote makeSelection(true)
-
+// save button
+// save the parameters
+// Bypass password when going back to story
