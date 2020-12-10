@@ -619,13 +619,39 @@ function saveParams() {
   downloadAnchorNode.remove();
 }
 
+function populateGallery() {
+  const number_of_images = 15;
+  const columns = document.getElementsByClassName('column2');
+  const num_per_column = number_of_images / columns.length;
+  // console.log(columns.length);
+
+  for (let i = 0; i < columns.length; i++) {
+    for (let j = 0; j < num_per_column; j++) {
+      const img = document.createElement('img');
+      img.classList.add('gallery_image');
+      // make src the corresponding image house + pairArr[i * 6 + j]
+      img.src = `./house_archive/${i * num_per_column + j}.jpg`;
+      columns[i].appendChild(img);
+    }
+  }
+}
+
+let fst = true;
+
+function toGallery() {
+  if (fst) {
+    populateGallery();
+  }
+  clearCont();
+  document.getElementById('gallery_container').style.display = 'flex';
+}
+
 
 // TODO:
 
 // -- Story screen
 // more guided description of the science behind this --> in a story telling way
   // scrolling, visuals
-// pre-generated sample collection --> submission option (through email?)
 // sources
 
 // done
