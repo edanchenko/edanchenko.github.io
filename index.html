@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/@runwayml/hosted-models@latest/dist/hosted-models.js"></script>
     <script src="http://cdn.staticfile.org/FileSaver.js/1.3.8/FileSaver.min.js"></script> 
     <link rel="stylesheet" href="archgen.css">
@@ -11,6 +12,16 @@
     <div class="heading_container cont">
       <h1>The AI House Project</h1>
       <button onclick="toIntro()" class="discreteButton" id="startButton">Click me to start</button>
+    </div>
+
+    <div id="m_intro_container" class="cont">
+      <h1>Introduction</h1>
+      <p style="width: 80%; margin: 0 auto; text-align: left;">
+        This project wants to explore the potential for colaboration between humans and computers in the field of architecture. <br> <br>
+        It is best viewed on desktop in a modern browser (Google Chrome). <br><br>
+        A randomly generated preview is available here <br><br>
+      </p>
+      <button onclick="toWall()" class="discreteButton gradientButton" id="startButton">Click to start</button>
     </div>
 
     <div id="intro_container" class="cont">
@@ -27,7 +38,7 @@
         <div style="display: flex; flex-direction: row; margin-top: 50px;">
           <button onclick="toWall()" class="discreteButton gradientButton" id="startButton" style="margin-left: 0px">Click to start</button>
           <button onclick="storyTime()" class="discreteButton" id="startButton" style="margin-right: 0px">Intrigued? Click to learn more about the technology</button>
-      </div>
+        </div>
       </div> 
     </div>
 
@@ -119,7 +130,7 @@
     </div>
 
     <div class="output_container cont">
-      <h1>Your selection:</h1>
+      <h1 style="font-size: 70px;">Your selection:</h1>
       <img class="display_house image" id="display">
       <div style="flex-direction: row; display: flex; width: 512px; margin: 0 auto; margin-top: 25px;">
         <button onclick="save()" class="discreteButton" style="font-size: 15px; margin-left: 0px;">Save image</button>
@@ -129,6 +140,12 @@
       </div>
       <p>or</p>
       <button onClick="displayModifyMenu()" class="discreteButton" id="modify_button" style="margin-bottom: 50px">Want to tweak the output?</button>
+    </div>
+
+    <div id="m_output_container" class="output_container cont">
+      <h1>AI House</h1>
+      <img class="image" width="100%">
+      <button onclick="m_makeRandom()" class="discreteButton" id="modify_button" style="margin-bottom: 50px; margin-top: 50px;">Generate a new one</button>
     </div>
 
     <div class="loading_container cont">

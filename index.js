@@ -5,6 +5,9 @@
 
 let VECTORS = [];
 
+const areWeMobile = ((window.innerWidth <= 600) || (window.innerHeight <= 600));
+console.log('are we in mobile? ', areWeMobile);
+
 // a function for finding min and max vector vals
 function t() {
   let max = -Infinity;
@@ -179,6 +182,16 @@ function toWall() {
   } 
 }
 
+function m_makeRandom() {
+  let z = [];
+  for (let i = 0; i < 512; i++) {
+    z.push(-1 + 2 * Math.random());
+  }
+  let truncation = 0.6 + 0.4 * Math.random();
+  let input = {"z": z, "truncation": truncation};
+  makeBuilding(input, false);
+}
+
 function enter() {
   const v = document.getElementById('door').value;
   // model = new rw.HostedModel(p);
@@ -217,7 +230,11 @@ function enter() {
       } else if (status == 'running') {
         console.log('model is running');
       }
-      makeSelection(true);
+      if (areWeMobile) {
+        m_makeRandom();
+      } else {
+        makeSelection(true);
+      }
     }
   })
   .catch((error) => console.log('error'));
@@ -267,6 +284,7 @@ function makeBuilding(input, firstTime) {
   storedInput = input;
   // console.log(input);
   clearCont();
+
   // document.getElementsByClassName('selection_container')[0].style.display = 'none';
   // document.getElementsByClassName('modify_container')[0].style.display = 'none';
   document.getElementsByClassName('loading_container')[0].style.display = 'flex';
@@ -291,11 +309,15 @@ function makeBuilding(input, firstTime) {
       const { image } = outputs;
       
       let imgs = document.getElementsByClassName('image');
-        for (let i = 0; i < imgs.length; i++) {
-          imgs[i].src = image;
-        }
+      for (let i = 0; i < imgs.length; i++) {
+        imgs[i].src = image;
+      }
       document.getElementsByClassName('loading_container')[0].style.display = 'none';
-      document.getElementsByClassName('output_container')[0].style.display = 'flex';
+      if (areWeMobile) {
+        document.getElementById('m_output_container').style.display = 'flex';
+      } else {
+        document.getElementsByClassName('output_container')[0].style.display = 'flex';
+      } 
     });
   } else {
     // modulate the output to produce 4 different versions
@@ -524,7 +546,11 @@ function up_down_vote(id) {
 
 function toIntro() {
   clearCont();
-  document.getElementById('intro_container').style.display = 'flex';
+  if (areWeMobile) {
+    document.getElementById('m_intro_container').style.display = 'flex';
+  } else {
+    document.getElementById('intro_container').style.display = 'flex';
+  }
 }
 
 function storyTime() {
@@ -602,15 +628,4 @@ function saveParams() {
 // pre-generated sample collection --> submission option (through email?)
 // sources
 
-// -- Final touches
-// mobile version or mobile-proofing
-
-// -- Testing
-// custom input
-// mobile
-// different desktop sizes
-
 // done
-// save button
-// save the parameters
-// Bypass password when going back to story
